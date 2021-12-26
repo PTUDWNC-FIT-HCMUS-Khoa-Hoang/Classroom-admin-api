@@ -8,9 +8,7 @@ const getOneById = async (req, res) => {
     if (!user) {
       throw new Error('Not found');
     }
-    res.status(200).send({
-      fullname: user.fullname,
-    });
+    res.status(200).send(user);
   } catch (error) {
     res.status(400).send({
       message: error.message,

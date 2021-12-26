@@ -7,6 +7,7 @@ const userRouter = express.Router();
 
 //======================== GET ========================
 userRouter.get('/', authMiddleware(Roles.admin), userControllers.getAll);
+userRouter.get('/:id', authMiddleware(Roles.admin), userControllers.getOneById);
 //======================== POST ========================
 //======================== PUT ========================
 userRouter.put('/:id', authMiddleware(Roles.admin), userControllers.putOne);
