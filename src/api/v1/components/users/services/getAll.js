@@ -3,7 +3,11 @@ import parseSearchString from '../../../helpers/queries/parseSearchString';
 
 const getAll = async (options) => {
   const searchString = options?.search || '';
-  const searchObject = parseSearchString(searchString, ['email', 'fullname']);
+  const searchObject = parseSearchString(searchString, [
+    'email',
+    'fullname',
+    'studentId',
+  ]);
 
   const users = await User.find(searchObject, null, {
     skip: parseInt(options?.skip),
