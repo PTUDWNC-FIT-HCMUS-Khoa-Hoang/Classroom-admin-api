@@ -46,7 +46,10 @@ userSchema.methods.toJSON = function () {
   delete userObject.password;
   delete userObject.secretOtp;
   delete userObject.googleId;
-  return userObject;
+  return {
+    id: userObject._id,
+    ...userObject,
+  };
 };
 
 userSchema.pre('save', async function (next) {
