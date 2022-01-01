@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    index: true,
   },
   fullname: {
     type: String,
@@ -23,11 +22,11 @@ const userSchema = new mongoose.Schema({
   },
   isVerified: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   isActive: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   secretOtp: {
     type: String,
