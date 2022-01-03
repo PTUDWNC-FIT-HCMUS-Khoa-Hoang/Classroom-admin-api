@@ -1,21 +1,37 @@
 import express from 'express';
-import Roles from '../../constants/role';
 import authMiddleware from '../../middlewares/auth';
+import functionalityList from '../functionalities/constants/functionalityList';
 import userControllers from './controllers';
 
 const userRouter = express.Router();
 
 //======================== GET ========================
-userRouter.get('/', authMiddleware(Roles.admin), userControllers.getAll);
-userRouter.get('/:id', authMiddleware(Roles.admin), userControllers.getOneById);
+userRouter.get(
+  '/',
+  authMiddleware(functionalityList.canReadUsers),
+  userControllers.getAll
+);
+userRouter.get(
+  '/:id',
+  authMiddleware(functionalityList.canReadUsers),
+  userControllers.getOneById
+);
 //======================== POST ========================
-userRouter.post('/', authMiddleware(Roles.admin), userControllers.postOne);
+userRouter.post(
+  '/',
+  authMiddleware(functionalityList.canCreateUser),
+  userControllers.postOne
+);
 //======================== PUT ========================
-userRouter.put('/:id', authMiddleware(Roles.admin), userControllers.putOne);
+userRouter.put(
+  '/:id',
+  authMiddleware(functionalityList.canUpdateUser),
+  userControllers.putOne
+);
 //======================== DELETE ========================
 userRouter.delete(
   '/:id',
-  authMiddleware(Roles.admin),
+  authMiddleware(functionalityList.canDeleteUser),
   userControllers.deleteOne
 );
 

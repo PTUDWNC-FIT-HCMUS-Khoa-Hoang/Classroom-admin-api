@@ -1,14 +1,14 @@
 import express from 'express';
-import accountControllers from './controllers';
 import authMiddleware from '../../middlewares/auth';
-import Roles from '../../constants/role';
+import functionalityList from '../functionalities/constants/functionalityList';
+import accountControllers from './controllers';
 
 const accountRouter = express.Router();
 
 //======================== GET ========================
 accountRouter.get(
   '/other/:id',
-  authMiddleware([Roles.admin]),
+  authMiddleware(functionalityList.canReadAccounts),
   accountControllers.getOneById
 );
 //======================== POST ========================
@@ -16,7 +16,7 @@ accountRouter.post('/login', accountControllers.login);
 //======================== PUT ========================
 accountRouter.put(
   '/:id',
-  authMiddleware([Roles.admin]),
+  authMiddleware(functionalityList.canUpdateAccount),
   accountControllers.putOne
 );
 //======================== DELETE ========================
