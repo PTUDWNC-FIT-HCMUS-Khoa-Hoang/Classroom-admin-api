@@ -3,42 +3,45 @@ import mongoose from 'mongoose';
 
 const SALT_ROUNDS = 10;
 
-const userSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: true,
-    trim: true,
+const userSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    fullname: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    studentId: {
+      type: String,
+    },
+    isVerified: {
+      type: Boolean,
+      default: true,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+    secretOtp: {
+      type: String,
+    },
+    googleId: {
+      type: String,
+    },
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
   },
-  fullname: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  studentId: {
-    type: String,
-  },
-  isVerified: {
-    type: Boolean,
-    default: true,
-  },
-  isActive: {
-    type: Boolean,
-    default: true,
-  },
-  secretOtp: {
-    type: String,
-  },
-  googleId: {
-    type: String,
-  },
-  isDeleted: {
-    type: Boolean,
-    default: false,
-  },
-});
+  { timestamps: true }
+);
 
 userSchema.methods.toJSON = function () {
   const userObject = this.toObject();

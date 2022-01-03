@@ -5,33 +5,36 @@ import Roles from '../../constants/role';
 
 const SALT_ROUNDS = 10;
 
-const accountSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: true,
-    trim: true,
-    unique: true,
-    index: true,
+const accountSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+      unique: true,
+      index: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    fullname: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    role: {
+      type: mongoose.Types.ObjectId,
+      required: true,
+      ref: 'Role',
+    },
   },
-  password: {
-    type: String,
-    required: true,
-  },
-  fullname: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  isVerified: {
-    type: Boolean,
-    default: false,
-  },
-  role: {
-    type: mongoose.Types.ObjectId,
-    required: true,
-    ref: 'Role',
-  },
-});
+  { timestamps: true }
+);
 
 accountSchema.methods.toJSON = function () {
   const userObject = this.toObject();
