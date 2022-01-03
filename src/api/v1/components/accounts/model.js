@@ -27,8 +27,9 @@ const accountSchema = new mongoose.Schema({
     default: false,
   },
   role: {
-    type: String,
-    enum: Object.keys(Roles),
+    type: mongoose.Types.ObjectId,
+    required: true,
+    ref: 'Role',
   },
 });
 

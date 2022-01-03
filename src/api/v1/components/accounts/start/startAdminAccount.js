@@ -1,15 +1,18 @@
 import Roles from '../../../constants/role';
 import logger from '../../../log';
+import Role from '../../roles/model';
 import Account from '../model';
 
 const startAdminAccount = async () => {
   try {
+    const superAdminRole = await Role.findOne({ title: Roles.superadmin });
+
     const adminInformation = {
       email: 'anhkhoatranle30@gmail.com',
       password: '123123',
       fullname: 'System Admin',
       isVerified: true,
-      role: Roles.admin,
+      role: superAdminRole._id,
     };
 
     const foundAdminAccount = await Account.findOne({

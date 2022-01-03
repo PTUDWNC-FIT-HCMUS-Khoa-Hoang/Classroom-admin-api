@@ -1,4 +1,5 @@
 const Roles = {
+  superadmin: 'superadmin',
   admin: 'admin',
   staff: 'staff',
 };
