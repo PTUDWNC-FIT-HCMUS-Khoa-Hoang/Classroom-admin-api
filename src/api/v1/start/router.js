@@ -1,11 +1,13 @@
 import userRouter from '../components/users/router';
 import accountRouter from '../components/accounts/router';
+import roleRouter from '../components/roles/router';
 
 const api = 'api';
 
 const startRouter = (app) => {
   app.use(`/${api}/users`, userRouter);
   app.use(`/${api}/accounts`, accountRouter);
+  app.use(`/${api}/roles`, roleRouter);
 
   //404
   app.use((req, res, next) => {
