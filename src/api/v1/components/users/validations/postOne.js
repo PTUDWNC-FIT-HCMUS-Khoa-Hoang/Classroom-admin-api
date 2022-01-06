@@ -10,6 +10,7 @@ const postOne = yup
       .min(6, 'Password must contain at least 6 characters.')
       .required(),
     fullname: yup.string().required(),
+    studentId: yup.string(),
     address: yup.string(),
     company: yup.string(),
     apartment: yup.string(),
