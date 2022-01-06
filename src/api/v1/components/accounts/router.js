@@ -1,6 +1,6 @@
 import express from 'express';
 import authMiddleware from '../../middlewares/auth';
-import functionalityList from '../functionalities/constants/functionalityList';
+import { functionalityList } from '../functionalities/start/loadPrototypes';
 import accountControllers from './controllers';
 
 const accountRouter = express.Router();
@@ -18,6 +18,11 @@ accountRouter.get(
 );
 //======================== POST ========================
 accountRouter.post('/login', accountControllers.login);
+accountRouter.post(
+  '/add',
+  authMiddleware(functionalityList.canCreateAccount),
+  accountControllers.postOne
+);
 //======================== PUT ========================
 accountRouter.put(
   '/:id',
@@ -25,5 +30,10 @@ accountRouter.put(
   accountControllers.putOne
 );
 //======================== DELETE ========================
+accountRouter.delete(
+  '/:id',
+  authMiddleware(functionalityList.canDeleteAccount),
+  accountControllers.deleteOne
+);
 
 export default accountRouter;

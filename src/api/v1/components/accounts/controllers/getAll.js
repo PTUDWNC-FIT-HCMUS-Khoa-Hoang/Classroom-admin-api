@@ -1,16 +1,14 @@
 import accountServices from '../services';
 
 const getAll = async (req, res) => {
-  const { skip, limit, search, sortBy, order } = req.query;
+  const { skip, limit, search } = req.query;
   try {
-    const accounts = await accountServices.getAll({
+    const account = await accountServices.getAll({
       skip,
       limit,
       search,
-      sortBy,
-      order,
     });
-    res.status(200).send(accounts);
+    res.status(200).send(account);
   } catch (error) {
     res.status(400).send({
       message: error.message,

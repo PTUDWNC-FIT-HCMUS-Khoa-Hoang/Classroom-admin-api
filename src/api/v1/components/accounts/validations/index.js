@@ -1,7 +1,9 @@
 import putOne from './putOne';
+import postOne from './postOne';
 
-const userValidations = {
+const accountValidations = {
   putOne,
+  postOne,
 };
 
-export default userValidations;
+export default accountValidations;

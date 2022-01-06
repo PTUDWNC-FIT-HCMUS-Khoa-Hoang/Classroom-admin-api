@@ -5,6 +5,11 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const account = await Account.findByCredentials(email, password);
+
+    if (account.isDeleted) {
+      throw new Error('Email or password is invalid');
+    }
+
     const token = account.generateToken();
     res.status(200).send({
       user: account,

@@ -3,7 +3,7 @@ import Account from '../model';
 const getOneById = async (req, res) => {
   const { id } = req.params;
   try {
-    const account = await Account.findById(id);
+    const account = await Account.findById(id).populate({ path: 'role' });
     if (!account) {
       throw new Error('Not found');
     }

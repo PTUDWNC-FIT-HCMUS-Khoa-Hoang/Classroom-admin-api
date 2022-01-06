@@ -1,5 +1,4 @@
 import yup from 'yup';
-import Roles from '../../../constants/role';
 
 const putOne = yup
   .object()
