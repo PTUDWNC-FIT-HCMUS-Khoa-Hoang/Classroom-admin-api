@@ -8,13 +8,7 @@ const putOne = async (req, res) => {
     const foundAccount = await accountServices.getOneById(accountId);
 
     if (foundAccount.role.title === Roles.superadmin) {
-      if (req.user.id !== accountId) {
-        throw new Error('You are not allowed to update super admin account');
-      } else {
-        delete req.body.isDeleted;
-        delete req.body.isActive;
-        delete req.body.isResetPassword;
-      }
+      throw new Error('You are not allowed to update super admin account');
     }
 
     const updatedAccount = await accountServices.putOneOther(
