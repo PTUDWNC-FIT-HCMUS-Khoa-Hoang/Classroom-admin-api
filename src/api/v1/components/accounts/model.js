@@ -25,6 +25,14 @@ const accountSchema = new mongoose.Schema(
     },
     isVerified: {
       type: Boolean,
+      default: true,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+    isDeleted: {
+      type: Boolean,
       default: false,
     },
     role: {
