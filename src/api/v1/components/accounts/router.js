@@ -7,6 +7,11 @@ const accountRouter = express.Router();
 
 //======================== GET ========================
 accountRouter.get(
+  '/',
+  authMiddleware(functionalityList.canReadAccounts),
+  accountControllers.getAll
+);
+accountRouter.get(
   '/other/:id',
   authMiddleware(functionalityList.canReadAccounts),
   accountControllers.getOneById
