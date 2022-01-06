@@ -9,6 +9,7 @@ const putOne = yup
       .min(6, 'Password must contain at least 6 characters.'),
     role: yup.string(),
     isVerified: yup.boolean(),
+    isActive: yup.boolean(),
   })
   .noUnknown(true);
 
