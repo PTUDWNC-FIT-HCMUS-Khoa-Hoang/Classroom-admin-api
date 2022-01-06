@@ -1,6 +1,5 @@
-import logger from '../../../log';
-import sendMailByGmail from '../../mails/services/gmail';
-import generateRandomPassword from '../helpers/generateRandomPassword';
+import Roles from '../../../constants/role';
+import Role from '../../roles/model';
 import Account from '../model';
 import accountValidations from '../validations';
 import checkAvailability from './checkAvailability';
@@ -8,38 +7,16 @@ import checkAvailability from './checkAvailability';
 const postOne = async (accountData) => {
   const validation = await accountValidations.postOne.validate(accountData);
 
-  const accountInformation = {
-    ...validation,
-    password: generateRandomPassword(),
-  };
+  await checkAvailability(validation.email);
 
-  await checkAvailability(accountInformation.email);
+  const role = await Role.findById(validation.role);
+  if (role.title === Roles.superadmin) {
+    throw new Error('Can not create another super admin');
+  }
 
-  const subject = '[HMSP] - Management account information';
-  const html = `
-    <h1>HMSP Management Account</h1>
-    <strong>Please do not provide this information to anyone else.</strong>
-    <h3>Email: ${accountInformation.email}</h3>
-    <h3>Password: ${accountInformation.password}</h3>
-  `;
-
-  const newAccount = new Account(accountInformation);
+  const newAccount = new Account(validation);
 
   await newAccount.save();
-
-  sendMailByGmail({
-    html,
-    subject,
-    receiverEmail: accountInformation.email,
-  })
-    .then(() =>
-      logger.log(`Email is already sent to ${accountInformation.email}.`)
-    )
-    .catch((error) =>
-      logger.log(
-        `An error occurred while creating management account: ${error.message}`
-      )
-    );
 
   return newAccount;
 };
