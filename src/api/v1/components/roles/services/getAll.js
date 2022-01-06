@@ -3,7 +3,11 @@ import parseSearchString from '../../../helpers/queries/parseSearchString';
 
 const getAll = async (options) => {
   const searchString = options?.search || '';
-  const searchObject = parseSearchString(searchString, ['title'], '+');
+  const searchObject = parseSearchString({
+    searchString,
+    keys: ['title'],
+    separator: '+',
+  });
 
   const roles = await Role.find(searchObject, null, {
     skip: parseInt(options?.skip),

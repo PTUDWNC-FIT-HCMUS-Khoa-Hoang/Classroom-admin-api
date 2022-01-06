@@ -1,8 +1,8 @@
-const parseSearchString = (
+const parseSearchString = ({
   searchString = 'Last+First',
   keys = ['fullname'],
-  separator = '+'
-) => {
+  separator = '+',
+}) => {
   const parsedSearchString =
     searchString.length === 0 ? '' : searchString.split(separator).join(' ');
 
