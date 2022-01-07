@@ -46,6 +46,22 @@ const functionalityList = {
     //R
     title: 'canReadFunctionalities',
   },
+  // Classrooms
+  canCreateClassroom: {
+    //C
+    title: 'canCreateClassroom',
+  },
+  canReadClassrooms: {
+    //R
+    title: 'canReadClassrooms',
+  },
+  canUpdateClassroom: {
+    //U
+    title: 'canUpdateClassroom',
+  },
+  canDeleteClassroom: {
+    title: 'canDeleteClassroom',
+  },
 };
 
 export default functionalityList;

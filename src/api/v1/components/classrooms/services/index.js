@@ -1,13 +1,7 @@
-import parseCsvToStudentList from './parseCsvToStudentList';
-import putOneById from './putOneById';
-import getOneById from './getOneById';
-import parseStudentListToCsvFile from './parseStudentListToCsvFile';
+import getAll from './getAll';
 
 const classroomServices = {
-  parseCsvToStudentList,
-  putOneById,
-  getOneById,
-  parseStudentListToCsvFile,
+  getAll,
 };
 
 export default classroomServices;
