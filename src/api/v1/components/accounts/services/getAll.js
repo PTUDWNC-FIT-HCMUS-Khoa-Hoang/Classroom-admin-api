@@ -10,8 +10,7 @@ const getAll = async (options) => {
   });
 
   const accounts = await Account.find(searchObject, null, {
-    skip: parseInt(options?.skip),
-    limit: parseInt(options?.limit),
+    ...parseSkipAndLimit(options),
   }).populate({ path: 'role' });
 
   // return data

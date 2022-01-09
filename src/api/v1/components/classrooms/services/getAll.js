@@ -15,8 +15,7 @@ const getAll = async (options) => {
   const sortObject = parseSortQuery(options.sortBy, options.order);
 
   const classrooms = await Classroom.find(searchObject, null, {
-    skip: parseInt(options?.skip),
-    limit: parseInt(options?.limit),
+    ...parseSkipAndLimit(options),
     sort: sortObject,
   }).populate({ path: 'owner' });
 

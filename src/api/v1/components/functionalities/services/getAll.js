@@ -10,8 +10,7 @@ const getAll = async (options) => {
   });
 
   const functionalities = await Functionality.find(searchObject, null, {
-    skip: parseInt(options?.skip),
-    limit: parseInt(options?.limit),
+    ...parseSkipAndLimit(options),
   });
 
   // return data

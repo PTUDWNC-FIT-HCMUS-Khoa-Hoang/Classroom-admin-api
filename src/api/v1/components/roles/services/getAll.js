@@ -10,8 +10,7 @@ const getAll = async (options) => {
   });
 
   const roles = await Role.find(searchObject, null, {
-    skip: parseInt(options?.skip),
-    limit: parseInt(options?.limit),
+    ...parseSkipAndLimit(options),
   }).populate({ path: 'functionalityList' });
 
   // return data
