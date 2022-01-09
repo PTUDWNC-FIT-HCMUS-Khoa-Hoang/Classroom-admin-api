@@ -1,6 +1,7 @@
 import User from '../model';
 import parseSearchString from '../../../helpers/queries/parseSearchString';
 import parseSortQuery from '../../../helpers/queries/parseSortQuery';
+import parseSkipAndLimit from '../../../helpers/queries/parseSkipAndLimit';
 
 const getAll = async (options) => {
   // search
@@ -15,8 +16,7 @@ const getAll = async (options) => {
   const sortObject = parseSortQuery(options.sortBy, options.order);
 
   const users = await User.find(searchObject, null, {
-    skip: parseInt(options?.skip),
-    limit: parseInt(options?.limit),
+    ...parseSkipAndLimit(options),
     sort: sortObject,
   });
 
