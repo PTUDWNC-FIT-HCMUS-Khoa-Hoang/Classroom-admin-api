@@ -1,5 +1,6 @@
 import Account from '../model';
 import parseSearchString from '../../../helpers/queries/parseSearchString';
+import parseSkipAndLimit from '../../../helpers/queries/parseSkipAndLimit';
 
 const getAll = async (options) => {
   const searchString = options?.search || '';
