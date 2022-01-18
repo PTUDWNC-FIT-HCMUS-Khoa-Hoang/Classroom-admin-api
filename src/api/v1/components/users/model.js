@@ -20,7 +20,9 @@ const userSchema = new mongoose.Schema(
     },
     studentId: {
       type: String,
+      index: true,
       unique: true,
+      sparse: true,
     },
     isVerified: {
       type: Boolean,
